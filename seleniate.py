@@ -16,11 +16,10 @@ driver = webdriver.safari.webdriver.WebDriver()
 driver.get("https://www.nike.com/ca/w/football-shoes-1gdj0zy7ok")
 
 
-
-
-#   By import helps to identify which element I will be targetting (refer to doc)
 shoeList = []
 testnum = 0
+
+#   This loop scrolls through the whole page to display all the elements. 
 while True:
     shoePrices = driver.find_elements(By.CLASS_NAME, 'product-price')
     
@@ -38,6 +37,8 @@ shoeCategories = driver.find_elements(By.CLASS_NAME, 'product-card__subtitle')
 shoeColours = driver.find_elements(By.CLASS_NAME, 'product-card__product-count')
 shoePrices = driver.find_elements(By.CLASS_NAME, 'product-price')
 shoeLinks = driver.find_elements(By.CLASS_NAME, 'product-card__link-overlay')
+
+#   Creating dictionaries to pass to database, files etc.
 for index in range(len(shoePrices)):
     shoes = {
         "name": shoeNames[index].text,
