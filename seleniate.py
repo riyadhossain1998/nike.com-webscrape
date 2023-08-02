@@ -12,13 +12,6 @@ from selenium.webdriver.common.keys import Keys
 import time
 
 
-
-
-
-
-
-
-
 def scrapedDataToDict(driver):
     #   Creating dictionaries to pass to database, files etc.
     shoeNames = driver.find_elements(By.CLASS_NAME, 'product-card__title')
@@ -75,47 +68,6 @@ if __name__ == "__main__":
     
     
 
-=======
-driver = webdriver.safari.webdriver.WebDriver()
-driver.get("https://www.nike.com/ca/w/football-shoes-1gdj0zy7ok")
-
-
-shoeList = []
-testnum = 0
-
-#   This loop scrolls through the whole page to display all the elements. 
-while True:
-    shoePrices = driver.find_elements(By.CLASS_NAME, 'product-price')
-    
-    
-    if(len(shoePrices) >= 103):
-        testnum = len(shoePrices)
-        break
-    
-    # Scroll down the page by sending "END" key to the body element
-    driver.find_element(By.TAG_NAME, 'body').send_keys(Keys.END)
-    time.sleep(2)  # Wait for a short time to let the page load
-
-shoeNames = driver.find_elements(By.CLASS_NAME, 'product-card__title')
-shoeCategories = driver.find_elements(By.CLASS_NAME, 'product-card__subtitle')
-shoeColours = driver.find_elements(By.CLASS_NAME, 'product-card__product-count')
-shoePrices = driver.find_elements(By.CLASS_NAME, 'product-price')
-shoeLinks = driver.find_elements(By.CLASS_NAME, 'product-card__link-overlay')
-
-#   Creating dictionaries to pass to database, files etc.
-for index in range(len(shoePrices)):
-    shoes = {
-        "name": shoeNames[index].text,
-        "category": shoeCategories[index].text,
-        "colors": shoeColours[index].text,
-        "price": shoePrices[index].text,
-        "link": shoeLinks[index].get_attribute('href')
-    }
-    shoeList.append(shoes)
-
-print(shoeList)
-print(testnum)
-print(len(shoeList))
 
 
 
