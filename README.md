@@ -2,7 +2,10 @@
 
 This repository contains my learning progress of webscraping in Python. So far, I have worked with [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/) and [Selenium](https://selenium-python.readthedocs.io/). I decided to solve the problem of extracting shoe information directly from the Nike Canada site. 
 
-Number of hours in: 1 hour of BeautifulSoup and 4 hours of Selenium.
+Number of hours in: 1 hour of BeautifulSoup and 6 hours of Selenium.
+
+Seleniate.py:
+Using pandas to organize the dictionary, can now differentiate between Adult and Kids version of the shoes.
 
 My takeaways so far are: 
 1.  [<ins>BeautifulSoup</ins>] is a very simple webscraping library that cannot handle JavaScript as it is useful to extract the HTML source code.
