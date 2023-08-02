@@ -10,7 +10,16 @@ from selenium.webdriver.remote.command import Command
 from selenium.webdriver.common.keys import Keys
 
 import time
+import pandas as pd
 
+
+def processInformation(shoeList):
+    a = pd.DataFrame(shoeList)
+    b = a.drop_duplicates(subset="link")
+    #b.to_csv("nike-football.csv")
+    
+    result_df = b[b['category'].str.contains("Kids", case=False)]
+    print(result_df)
 
 def scrapedDataToDict(driver):
     #   Creating dictionaries to pass to database, files etc.
@@ -26,7 +35,8 @@ def scrapedDataToDict(driver):
             "category": shoeCategories[index].text,
             "colors": shoeColours[index].text,
             "price": shoePrices[index].text,
-            "link": shoeLinks[index].get_attribute('href')
+            "link": shoeLinks[index].get_attribute('href'),
+            
         }
         myList.append(shoes)
     return myList
@@ -60,14 +70,13 @@ def main():
     driver = initializeDriver(link)
     scrollToBottom(driver)
     shoeList = scrapedDataToDict(driver)
-    print(shoeList)
-    print(len(shoeList))
+    processInformation(shoeList)
+    
 
 if __name__ == "__main__":
     main()
     
     
-
 
 
 
@@ -78,9 +87,3 @@ if __name__ == "__main__":
 #   New update: I have figured it out, it does print out all of them
 #   The new code is now scrolling through the page to load all the shoes
 #   and the loop creates a dictionary with the shoes.
-
-
-time.sleep(16)
-
-
- 
